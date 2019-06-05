@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewRandom: UIViewController {
     //btn start
     @IBOutlet weak var ig_btnStart: UIButton!
     @IBOutlet weak var ig_retour: UIButton!
     
+    @IBOutlet weak var ig_labelScore: UILabel!
     @IBOutlet var ig_btnGame: [UIButton]!
     @IBOutlet var ig_btnUn: [UIButton]!
     @IBOutlet var ig_btnDeux: [UIButton]!
@@ -22,11 +23,13 @@ class ViewController: UIViewController {
     @IBOutlet var ig_btnSix: [UIButton]!
     @IBOutlet var ig_btnSept: [UIButton]!
     
+    var point = UserData().point()
     var timer:Timer?
     var test = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        point = UserData().point()
         for i in ig_btnUn{
             i.alpha = 0
         }
@@ -50,15 +53,24 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        ig_labelScore.text = "vous avez \(point)"
+    }
+    
     @IBAction func btn_Start(_ sender: UIButton) {
-        ig_btnStart.alpha = 0
-        ig_retour.alpha = 0
-        let un =  ig_btnUn.randomElement()
-        un?.tag = 1
-        for i in ig_btnUn {
-            i.alpha = 1
+        if point>=1 {
+            point -= 1
+            UserData().setPoint(point: point)
+            ig_btnStart.alpha = 0
+            ig_retour.alpha = 0
+            let un =  ig_btnUn.randomElement()
+            un?.tag = 1
+            for i in ig_btnUn {
+                i.alpha = 1
+            }
+            time()
         }
-        time()
+        ig_labelScore.text = "vous avez \(point)"
     }
     
     @IBAction func btn_test(_ sender: UIButton) {
@@ -136,9 +148,11 @@ class ViewController: UIViewController {
         }
         ig_btnStart.alpha = 1
         ig_retour.alpha = 1
+        ig_labelScore.text = "vous avez \(point)"
     }
     
     @IBAction func btn_un() {
+        addPoint()
         let deux = ig_btnDeux.randomElement()
         deux?.tag = 2
         for i in ig_btnDeux {
@@ -147,6 +161,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_deux() {
+        addPoint()
         let trois = ig_btnTrois.randomElement()
         trois?.tag = 3
         for i in ig_btnTrois {
@@ -155,6 +170,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_trois() {
+        addPoint()
         let quatre = ig_btnQuatre.randomElement()
         quatre?.tag = 4
         for i in ig_btnQuatre {
@@ -163,6 +179,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_quatre() {
+        addPoint()
         let cinq = ig_btnCinq.randomElement()
         cinq?.tag = 5
         for i in ig_btnCinq {
@@ -171,7 +188,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_cinq() {
-        
+        addPoint()
         let six = ig_btnSix.randomElement()
         six?.tag = 6
         for i in ig_btnSix {
@@ -180,6 +197,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_six() {
+        addPoint()
         let sept = ig_btnSept.randomElement()
         sept?.tag = 7
         for i in ig_btnSept {
@@ -188,6 +206,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_sept() {
+        addPoint()
         for i in ig_btnGame {
             i.alpha = 0
             if i.tag != 0{
@@ -199,5 +218,11 @@ class ViewController: UIViewController {
     }
     private func time(){
         timer  = Timer.scheduledTimer(withTimeInterval: 10, repeats: false, block: { (_) in self.bad() })
+    }
+    private func addPoint()
+    {
+        point += 1
+        UserData().setPoint(point: point)
+        ig_labelScore.text = "vous avez \(point)"
     }
 }

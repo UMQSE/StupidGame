@@ -1,27 +1,19 @@
 //
-//  ViewEnter.swift
+//  ViewMemory.swift
 //  btnGame
 //
-//  Created by Admin on 28/05/2019.
+//  Created by Admin on 04/06/2019.
 //  Copyright © 2019 Moi. All rights reserved.
 //
 
 import UIKit
 
-class ViewEnter: UIViewController {
-    
-    var point = UserData().point()
-    
+class ViewMemory: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        
+
+        // Do any additional setup after loading the view.
     }
     
 
