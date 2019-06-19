@@ -47,6 +47,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8447012522B1197C00E5139E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		8461C6CD22967CC8003AE78A = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +73,7 @@
 		8461C6D822967CC8003AE78A /* btnGame */ = {
 			isa = PBXGroup;
 			children = (
+				8447012522B1197C00E5139E /* New Group */,
 				8461C6D922967CC8003AE78A /* AppDelegate.swift */,
 				8461C6DB22967CC8003AE78A /* ViewRandom.swift */,
 				8461C6DD22967CC8003AE78A /* Main.storyboard */,
